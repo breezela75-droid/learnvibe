@@ -44,8 +44,29 @@ const quotes = [
 const quoteText = document.getElementById('quote-text');
 const quoteAuthor = document.getElementById('quote-author');
 const newQuoteBtn = document.getElementById('new-quote-btn');
+const themeToggleBtn = document.getElementById('theme-toggle-btn');
+const themeIcon = document.getElementById('theme-icon');
+const themeLabel = document.getElementById('theme-label');
 
 let lastQuoteIndex = -1;
+
+
+function setTheme(theme) {
+    const isDarkMode = theme === 'dark';
+    document.body.classList.toggle('dark-mode', isDarkMode);
+    themeIcon.textContent = isDarkMode ? '☀️' : '🌙';
+    themeLabel.textContent = isDarkMode ? '화이트 모드' : '다크 모드';
+    themeToggleBtn.setAttribute('aria-label', isDarkMode ? '화이트 모드로 변경' : '다크 모드로 변경');
+    localStorage.setItem('theme', theme);
+}
+
+function getInitialTheme() {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark' || savedTheme === 'light') {
+        return savedTheme;
+    }
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+}
 
 function getRandomQuote() {
     let randomIndex;
@@ -70,6 +91,12 @@ function displayQuote() {
 }
 
 newQuoteBtn.addEventListener('click', displayQuote);
+themeToggleBtn.addEventListener('click', () => {
+    const nextTheme = document.body.classList.contains('dark-mode') ? 'light' : 'dark';
+    setTheme(nextTheme);
+});
+
+setTheme(getInitialTheme());
 
 // 페이지 로드 시 첫 명언 표시
 displayQuote();
