@@ -1,14 +1,20 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hello World</title>
-  <link href='/style.css' rel='stylesheet'>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>하루 긍정 명언</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Hello, world!</h1>
-  <button onclick="console.log('hello');">Press me</button>
-  <script defer type="text/javascript" src="/main.js"></script>
+    <div class="container">
+        <h1>하루 긍정 명언</h1>
+        <div class="quote-card">
+            <p id="quote-text">여기에 명언이 표시됩니다.</p>
+            <p id="quote-author">- 출처</p>
+        </div>
+        <button id="new-quote-btn">새 명언 보기</button>
+    </div>
+    <script src="main.js"></script>
 </body>
 </html>
